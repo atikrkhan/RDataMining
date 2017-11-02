@@ -51,8 +51,15 @@ bp.hbra
 ####################################################################
 ### Principal component analysis
 ####################################################################
-
-
+?prcomp
+require(graphics)
+?USArrests
+head(USArrests,3)
+prcomp(USArrests, scale = TRUE)
+prcomp(~ Murder + Assault + Rape, data = USArrests, scale = TRUE)
+plot(prcomp(USArrests))
+summary(prcomp(USArrests, scale = TRUE))
+biplot(prcomp(USArrests, scale = TRUE))
 
 mdl.pca<- function(evals, n)
 {
