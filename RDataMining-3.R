@@ -28,9 +28,9 @@ seg.summ <- function(data, groups) {
 seg.summ(seg.df, seg.raw$Segment)
 
 head(seg,3)
-
+############################################
 # Clustering
-
+############################################
 library(cluster)
 seg.dist <- daisy(seg.df) # daisy works with mixed data types
 as.matrix(seg.dist)[1:3, 1:3] # distances of first 4 observations
@@ -48,9 +48,9 @@ cor(cophenetic(seg.hc), seg.dist) # cophenetic correlation coefficient
 
 plot(seg.hc)
 rect.hclust(seg.hc, k=4, border="blue")
-
+#######################################################
 # getting membership from hclust
-
+#######################################################
 seg.hc.segment <- cutree(seg.hc, k=4) # membership vector for 4 groups
 table(seg.hc.segment)
 
@@ -63,7 +63,8 @@ axis(1, at=c(1, 2), labels=c("Subscribe: No", "Subscribe: Yes"))
 axis(2, at=c(1, 2), labels=levels(seg.df$gender))
 
 ########################################
-
+# train and test data
+########################################
 
 
 set.seed(92118)
@@ -77,6 +78,9 @@ library(cluster)
 clusplot(sub.df.train[, -6], sub.df.train$subscribe, color=TRUE, 
          shade=TRUE, labels=4, lines=0, main="Status, training data")
 
+##############################################
+# random forest
+##############################################
 
 install.packages("randomForest")
 library(randomForest)
